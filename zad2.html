@@ -66,7 +66,12 @@
                 // Set text-anchor to end if the text is on the right half of the circle, otherwise start
                 return (d.startAngle + d.endAngle) / 2 > Math.PI ? "end" : "start";
             })
-            .text(function (d) { return d.data.name + ": " + d.data.value; });
+            .text(function (d) { return d.data.name });
+
+        pieArcs.append("text")
+            .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("text-anchor", "middle")
+            .text(function (d) { return d.data.value; });
     </script>
 </body>
 
